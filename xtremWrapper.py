@@ -102,102 +102,81 @@ class XtremIO:
        
         return None
 
+    # Physical Hardware Devices
     def get_xbricks(self):
         """ Provides a list of all managed xbricks """
         return self._get_objects("bricks")
     
-    def get_xbrick_detail(self,brick):
-        """ Provides the details on a specific brick """
-        return self._get_details(brick)
-
     def get_clusters(self):
         """ Gets a list of all clusters on the XMC """
         return self._get_objects("clusters")
-
-    def get_cluster_detail(self,cluster):
-        """ Provides the details on a specific cluster """
-        return self._get_details(cluster)
 
     def get_ssds(self):
         """ Provides a list of all SSDs in the cluster """
         return self._get_objects("ssds")
 
-    def get_ssd_details(self,ssd):
-        """ Provides details on a specific SSD """
-        return self._get_details(ssd)
-                 
     def get_slots(self):
         """ Provides a list of all slots in the cluster """
         return self._get_objects("slots") 
-
-    def get_slot_details(self,slot):
-        return self._get_details(slot)
 
     def get_ibswitches(self):
         """ Provides a list of all switches in the cluster """
         return self._get_objects("infiniband-switches")
 
-    def get_ibswitch_details(self,ibswitch):
-        return self._get_details(ibswitch)
-
     def get_bbus(self):
         """ Provides a list of all BBUs in the cluster """
         return self._get_objects("bbus")
-
-    def get_bbu_details(self,bbu):
-        return self._get_details(bbu)
 
     def get_daes(self):
         """ Provides a list of all DAEs in the cluster """
         return self._get_objects("daes")
     
-    def get_dae_details(self,dae):
-        return self._get_details(dae)
-   
     def get_daecontrollers(self):
         """ Provides a list of all DAE Controller cards in the cluster """
         return self._get_objects("daecontrollers")
-
-    def get_daecontroller_details(self,dae):
-        return self._get_details(daecontroller)
 
     def get_daepsus(self):
         """ Provides a list of all DAE PSUs in the cluster """
         return self._get_objects("daepsus")
 
-    def get_daepsu_details(self,dae):
-        return self._get_details(daepsu)
-    
     def get_localdisks(self):
         """ Provides a list of local disks in the SCs in the cluster """
         return self._get_objects("local-disks")
 
-    def get_localdisk_details(self,localdisk):
-        return self._get_details(localdisk)
-    
     def get_storagecontrollers(self):
         """ Provides a list of all SCs in the cluster """
         return self._get_objects("storage-controllers")
 
-    def get_storagecontroller_details(self,sc):
-        return self._get_details(sc)
-
     def get_storagecontrollerpsus(self):
         return self._get_objects("storage-controller-psus")
 
-    def get_storagecontrollerpsus_details(self,scpsus):
-        return self._get_details(scpsus)
+    # Logical items
+    def get_volumes(self):
+        return self._get_objects("volumes")
 
-if __name__ == "__main__":
+    def get_initiatorgroups(self):
+        return self._get_objects("initiator-groups")
 
-    ip = "10.5.39.118"
-    array = XtremIO(ip,"admin","Xtrem10")
+    def get_initiators(self):
+        return self._get_objects("initiators")
 
-    clusters = array.get_clusters()
-    array.set_cluster(clusters[0])
-    bricks = array.get_xbricks()
-    a = array.get_storagecontrollerpsus()[1]
-    b = a.details()
-    print a
-    print b
+    def get_snapshots(self):
+        return self._get_objects("snapshots")
 
+    def get_snapshotsets(self):
+        return self._get_objects("snapshot-sets")
+
+    def get_consistencygroups(self):
+        return self._get_objects("consistency-groups")
+
+    def get_lunmaps(self):
+        return self._get_objects("lun-maps")
+          
+    def get_tags(self):
+        return self._get_objects("tags")
+
+    def get_targets(self):
+        return self._get_objects("targets")
+
+    def get_targetgroups(self):
+        return self._get_objects("target-groups")
