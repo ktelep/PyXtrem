@@ -21,6 +21,23 @@ class XtremObject:
    def __repr__(self):
        return "<XtremObject: %s>" % self.object_type
 
+class XtremVolume(XtremObject):
+    def __init__(self, object_data, xtremio_connection):
+       XtremObject.__init__(self, object_data, xtremio_connection)
+
+    @property
+    def snapshots(self):
+       volume_details = self.details()
+  
+       if "dest-snap-list" in volume_details:
+           snap_list = []
+           for i in volume_details["dest-snap-list"]:
+               snap_index = i[2]
+               snap_list += self.parent_connection.get_snapshots(index=snap_index)
+           return snap_list
+      
+       return None
+ 
 class XtremIO:
     def __init__(self,ip,user,pwd):
         """ Constructor, store user, pass, and IP address """
@@ -160,7 +177,7 @@ class XtremIO:
     def get_initiators(self):
         return self._get_objects("initiators")
 
-    def get_snapshots(self):
+    def get_snapshots(self, **kwargs):
         return self._get_objects("snapshots")
 
     def get_snapshotsets(self):
