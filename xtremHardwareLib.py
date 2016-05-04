@@ -18,7 +18,7 @@ def getClusters(ip,user,pwd):
         print "Error:",e
         return 1
 
-def getClusterDetails(ip,user,name,clusterName):
+def getClusterDetails(ip,user,pwd,clusterName):
     try:
         response = requests.get('https://%s/api/json/v2/types/clusters?name=%s'%(ip,clusterName),auth=(user,pwd),verify=False)
         return json.loads(response.text)
@@ -35,7 +35,7 @@ def getXbricks(ip,user,pwd):
         print "Error:",e
         return 1
 
-def getXbrickDetails(ip,user,name,brickId):
+def getXbrickDetails(ip,user,pwd,brickId):
     try:
         response = requests.get('https://%s/api/json/v2/types/bricks?brick-id=%s'%(ip,brickId),auth=(user,pwd),verify=False)
         return json.loads(response.text)
@@ -54,7 +54,7 @@ def getSsds(ip,user,pwd):
 
 def getSsdDetails(ip,user,pwd,ssdId):
     try:
-        response = requests.get('https://%s/api/json/v2/types/ssds?ssd-id=%s'%(ip,ssdId),auth=(user,pwd),verify=False)
+        response = requests.get('https://%s/api/json/v2/types/ssds?name=%s'%(ip,ssdId),auth=(user,pwd),verify=False)
         return json.loads(response.text)
     except requests.exceptions.RequestException as e:
         print "Error:",e
