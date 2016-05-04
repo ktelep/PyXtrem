@@ -32,6 +32,24 @@ xtremXenvLib.getXenvs("1.1.1.1","username","password")
 xtremHardwareLib.getXbricks("1.1.1.1","username","password")
 ```
 
+There is an object based API wrapper also included, currently supporting the gathering of array information at this time.   Physical and logical devices are represented as XtremObjects.  The details() function returns a dict containing all of the detailed information returned from the array for that particular object.
+
+```
+array = XtremIO("1.1.1.1","username","password")
+
+# Get a list of clusters in the XMS, and set the active one to the first one
+clusters = array.get_clusters()
+array.set_cluster(clusters[0])
+
+# Get a list of the bricks in the active cluster
+bricks = array.get_xbricks()
+for brick in bricks:
+    print brick.details()
+
+```
+
+
+
 ## Future
 Currently, wrapper functions for critical activities related to volumes, consistency groups, snapshots, are added. In future, wrapper functions will be added for 
 - ISCSI initiators

@@ -1,7 +1,3 @@
-import xtremXenvLib
-import xtremXmsLib
-import xtremOperationsLib
-import xtremHardwareLib
 import requests, json, sys
 import requests.packages.urllib3
 
@@ -53,8 +49,9 @@ class XtremIO:
             response = requests.get(self.api_endpoint + object_type, 
                                     auth=(self.user,self.pwd), 
                                     params=params, verify=False)
-            print response
+
             devices = json.loads(response.text)
+
         except requests.exceptions.RequestException as e:
             print "Error:",e
             return 1
@@ -192,9 +189,6 @@ class XtremIO:
         return self._get_details(scpsus)
 
 if __name__ == "__main__":
-
-    import pprint
-    pp = pprint.PrettyPrinter(indent=4)    
 
     ip = "10.5.39.118"
     array = XtremIO(ip,"admin","Xtrem10")
